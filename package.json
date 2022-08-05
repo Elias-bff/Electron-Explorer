@@ -1,0 +1,10 @@
+{
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^20.0.1",
+    "v8-compile-cache": "^2.3.0"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}

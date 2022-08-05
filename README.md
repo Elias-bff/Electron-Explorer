@@ -1,2 +1,3 @@
+## Standin development model until Ultralight fixes and supports more features
+***
 # Electron Explorer
- File explorer made in Electron; Optimized for performance and visual clarity
