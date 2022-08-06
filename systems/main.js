@@ -31,7 +31,7 @@ async function main(){
         	app.exit(0)})
         wins[0].show()
         prc=require("child_process")
-        prc.exec("fsutil fsinfo drives",(e,s)=>{console.log(s.split(" ").slice(1,-1))})})}
+        prc.exec("fsutil fsinfo drives",(e,s)=>{wins[0].webContents.send("list",s.split(" ").slice(1,-1))})})}
 app.on("ready",main)
 var sys={
     callback:function(i,j){BrowserWindow.getAllWindows().find(win=>win.getTitle()==i).webContents.executeJavaScript(j)},}
