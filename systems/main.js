@@ -18,7 +18,9 @@ async function main(){
     var wins=BrowserWindow.getAllWindows()
     wins[0].webContents.once("did-finish-load",()=>{
         const {ipcMain}=require("electron")
+        prc=require("child_process")
         //fs=require("fs")
+        //add clipboard formating for real area select
         ipcMain.on("minimize",()=>{BrowserWindow.getFocusedWindow().minimize()})
         ipcMain.on("maximize",()=>{
             var f=BrowserWindow.getFocusedWindow()
@@ -29,9 +31,8 @@ async function main(){
         ipcMain.on("reboot",()=>{
             app.relaunch()
         	app.exit(0)})
-        wins[0].show()
-        prc=require("child_process")
-        prc.exec("fsutil fsinfo drives",(e,s)=>{wins[0].webContents.send("list",s.split(" ").slice(1,-1))})})}
+        ipcMain.on("init",()=>{prc.exec("fsutil fsinfo drives",(e,s)=>{wins[0].webContents.send("list",s.split(" ").slice(1,-1))})})
+        wins[0].show()})}
 app.on("ready",main)
 var sys={
     callback:function(i,j){BrowserWindow.getAllWindows().find(win=>win.getTitle()==i).webContents.executeJavaScript(j)},}
