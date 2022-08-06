@@ -12,7 +12,7 @@ function popout(bounds,page){
             contextIsolation:true,
             enableRemoteModule:false,
             preload:(__dirname+"/preload.js")}})
-        win.loadFile(__dirname+"/"+page)}
+        win.loadFile([...__dirname.split("/").slice(0,-1),...[page]].join("/"))}
 async function main(){
     popout([580,300],"index.html")
     var wins=BrowserWindow.getAllWindows()
@@ -20,7 +20,10 @@ async function main(){
         const {ipcMain}=require("electron")
         //fs=require("fs")
         ipcMain.on("minimize",()=>{BrowserWindow.getFocusedWindow().minimize()})
-        ipcMain.on("maximize",()=>{BrowserWindow.getFocusedWindow().maximize()})
+        ipcMain.on("maximize",()=>{
+            var f=BrowserWindow.getFocusedWindow()
+            if(f.isFullScreen())f.setFullScreen(false)
+            else f.setFullScreen(true)})
         ipcMain.on("close",()=>{BrowserWindow.getFocusedWindow().close()})
         ipcMain.on("popout",(events,args)=>{popout([400,220],args)})
         ipcMain.on("reboot",()=>{

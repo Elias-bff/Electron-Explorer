@@ -1,2 +1,2 @@
 @echo off
-cmd /k npm exec electron .
+cmd /q /k npm exec electron .
