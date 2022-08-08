@@ -19,7 +19,7 @@ async function main(){
     wins[0].webContents.once("did-finish-load",()=>{
         const {ipcMain}=require("electron")
         prc=require("child_process")
-        //fs=require("fs")
+        fs=require("fs")
         //add clipboard formating for real area select
         ipcMain.on("minimize",()=>{BrowserWindow.getFocusedWindow().minimize()})
         ipcMain.on("maximize",()=>{
@@ -31,8 +31,21 @@ async function main(){
         ipcMain.on("reboot",()=>{
             app.relaunch()
         	app.exit(0)})
-        ipcMain.on("init",()=>{prc.exec("fsutil fsinfo drives",(e,s)=>{wins[0].webContents.send("list",s.split(" ").slice(1,-1))})})
-        wins[0].show()})}
+        ipcMain.on("init",()=>{prc.exec("fsutil fsinfo drives",(e,s)=>{
+            var drives=s.split(" ").slice(1,-1);var init=[{"folder":"pc"}]
+            for(var i=0;i<drives.length;i++)
+                init.push({"id":drives[i],"type":"folder"})
+            wins[0].webContents.send("list",init)})})
+        ipcMain.on("open",(events,args)=>{
+            console.log(args)
+            fs.readdir(args,function(e,r){
+                console.log(r)
+                if(e)return
+                for(var i=0;i<r.length;i++)
+                    console.log(r[i])
+                    wins[0].webContents.send("list",{"id":r[i]})})})
+        wins[0].show()
+        wins[0].webContents.executeJavaScript("window.onload()")})}
 app.on("ready",main)
 var sys={
     callback:function(i,j){BrowserWindow.getAllWindows().find(win=>win.getTitle()==i).webContents.executeJavaScript(j)},}
