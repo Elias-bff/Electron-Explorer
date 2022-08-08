@@ -37,13 +37,13 @@ async function main(){
                 init.push({"id":drives[i],"type":"folder"})
             wins[0].webContents.send("list",init)})})
         ipcMain.on("open",(events,args)=>{
-            console.log(args)
             fs.readdir(args,function(e,r){
-                console.log(r)
+                var f=[{"folder":args}]
                 if(e)return
                 for(var i=0;i<r.length;i++)
-                    console.log(r[i])
-                    wins[0].webContents.send("list",{"id":r[i]})})})
+                    f.push({"id":r[i],"parent":args,"type":""})
+                console.log(f)
+                wins[0].webContents.send("list",f)})})
         wins[0].show()
         wins[0].webContents.executeJavaScript("window.onload()")})}
 app.on("ready",main)
