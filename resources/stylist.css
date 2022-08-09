@@ -3,7 +3,7 @@
 .titlebar:hover{opacity:100%}
 body{background:#202020;font-size:10px;color:white;font-family:consolas;height:100vh;width:100vw}
 *{margin:0;overflow:hidden;white-space:nowrap;overflow-x:hidden}
-.resize{position:absolute;resize:horizontal;height:-webkit-fill-available;width:100px;}
+.resize{position:absolute;resize:horizontal;height:-webkit-fill-available;width:100px;max-width:100vw}
 
 #access{height:-webkit-fill-available;width:100%;background:#191919;position:absolute;overflow:auto}
 #access .case{display:flex;flex-direction:column} .case div{margin-left:10px;cursor:pointer}
