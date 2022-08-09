@@ -31,11 +31,12 @@ async function main(){
         ipcMain.on("reboot",()=>{
             app.relaunch()
         	app.exit(0)})
-        ipcMain.on("init",()=>{prc.exec("fsutil fsinfo drives",(e,s)=>{
-            var drives=s.split(" ").slice(1,-1);var init=[{"folder":"pc/"}]
-            for(var i=0;i<drives.length;i++)
-                init.push({"id":drives[i],"type":"folder"})
-            wins[0].webContents.send("list",init)})})
+        ipcMain.on("init",()=>{
+            prc.exec("fsutil fsinfo drives",(e,s)=>{
+                var drives=s.split(" ").slice(1,-1);var init=[{"folder":"pc/"},{"id":"C:/Users/barte/Desktop","type":"shortcut"}]
+                for(var i=0;i<drives.length;i++)
+                    init.push({"id":drives[i],"type":"folder"})
+                wins[0].webContents.send("list",init)})})
         ipcMain.on("view",(events,args)=>{
             fs.readdir(args,function(e,r){
                 var f=[{"folder":args}]
