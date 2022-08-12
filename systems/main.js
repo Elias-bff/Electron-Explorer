@@ -1,5 +1,5 @@
 const{app,BrowserWindow,shell}=require("electron")
-var fs,prc=null
+var fs,prc,mag=null
 function popout(bounds,page){
     var win=new BrowserWindow({
         width:bounds[0],
@@ -20,6 +20,7 @@ async function main(){
         const {ipcMain}=require("electron")
         prc=require("child_process")
         fs=require("fs")
+        mag=require("imagemagick")
         //add clipboard formating for real area select
         ipcMain.on("minimize",()=>{BrowserWindow.getFocusedWindow().minimize()})
         ipcMain.on("maximize",()=>{
@@ -45,9 +46,18 @@ async function main(){
                     f.push({"id":r[i],"parent":args,"type":r[i].includes(".")?"file":"folder"})
                 console.log(f)
                 wins[0].webContents.send("list",f)})})
-        ipcMain.on("open",(events,args)=>{shell.openPath(args)})
+        ipcMain.on("open",(events,args)=>{
+            shell.openPath(args)})
+        ipcMain.on("inspect",(events,args)=>{
+            mag.readMetadata(args,(e,d)=>{
+                if(e)throw e
+                wins[0].webContents.send("inspect",d)})
+            fs.stat(args,(e,s)=>{
+                if(e)return
+                wins[0].webContents.send("inspect",s)})})
         wins[0].show()
-        wins[0].webContents.executeJavaScript("window.onload()")})}
+        wins[0].webContents.executeJavaScript("window.onload()")
+        wins[0].on("resize",()=>{wins[0].webContents.executeJavaScript("sys.resize()")})})}
 app.on("ready",main)
 var sys={
     callback:function(i,j){BrowserWindow.getAllWindows().find(win=>win.getTitle()==i).webContents.executeJavaScript(j)}}

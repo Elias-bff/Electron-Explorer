@@ -2,5 +2,7 @@
   "main": "systems/main.js",
   "dependencies": {
     "electron": "^20.0.1",
-    "fs": "^0.0.1-security"}
+    "fs": "^0.0.1-security",
+    "imagemagick": "^0.1.3"
+  }
 }
