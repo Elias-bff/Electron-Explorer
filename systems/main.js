@@ -1,5 +1,5 @@
 const{app,BrowserWindow,shell}=require("electron")
-var fs,prc,mag=null
+var fs,prc=null
 function popout(bounds,page){
     var win=new BrowserWindow({
         width:bounds[0],
@@ -20,7 +20,6 @@ async function main(){
         const {ipcMain}=require("electron")
         prc=require("child_process")
         fs=require("fs")
-        mag=require("imagemagick")
         //add clipboard formating for real area select
         ipcMain.on("minimize",()=>{BrowserWindow.getFocusedWindow().minimize()})
         ipcMain.on("maximize",()=>{
@@ -41,7 +40,6 @@ async function main(){
         ipcMain.on("view",(events,args)=>{
             fs.readdir(args,function(e,r){
                 var f=[{"folder":args}]
-                if(e)return
                 for(var i=0;i<r.length;i++)
                     f.push({"id":r[i],"parent":args,"type":r[i].includes(".")?"file":"folder"})
                 console.log(f)
@@ -49,12 +47,14 @@ async function main(){
         ipcMain.on("open",(events,args)=>{
             shell.openPath(args)})
         ipcMain.on("inspect",(events,args)=>{
-            mag.readMetadata(args,(e,d)=>{
-                if(e)throw e
-                wins[0].webContents.send("inspect",d)})
-            fs.stat(args,(e,s)=>{
-                if(e)return
-                wins[0].webContents.send("inspect",s)})})
+            prc.exec("ncn.exe -info \""+args+"\"",(e,s)=>{
+                var r={}
+                s.split("\n").slice(5,-1).forEach(e=>{
+                    var i=e.replace(/\s+/g, " ").split(" : ")
+                    r[i[0].replace(" ","")]=i[1]})
+                fs.stat(args,(e,d)=>{
+                    //(bytes / 1048576).toFixed(2)
+                    wins[0].webContents.send("inspect",[r,args.split("/").at(-1),d])})})})
         wins[0].show()
         wins[0].webContents.executeJavaScript("window.onload()")
         wins[0].on("resize",()=>{wins[0].webContents.executeJavaScript("sys.resize()")})})}
