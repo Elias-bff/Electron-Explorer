@@ -16,8 +16,8 @@ explorer.dial("list",(d)=>{
     for(var i=1;i<d.length;i++)
         sys.ent(f,d[i])})
 explorer.dial("inspect",(d)=>{
-    info.children[0].children[1].innerText=d[1]
+    info.children[0].children[1].innerText=d[1].split("/").at(-1)
     info.children[0].children[2].innerText=d[0]["Width"]+"x"+d[0]["Height"]
     info.children[0].children[3].innerText=(d[2].size/1048576).toFixed(2)+" MB"
-    ram["temp"]=d
+    graphical.children[0].src=d[1]
     console.log(d)})
