@@ -55,7 +55,7 @@ async function main(){
                     var i=e.replace(/\s+/g, " ").split(" : ")
                     r[i[0].replace(" ","")]=i[1]})
                 fs.stat(args,(e,d)=>{
-                    wins[0].webContents.send("inspect",[r,args,d])})})})
+                    wins[0].webContents.send("inspect",[r,d,args])})})})
         wins[0].show()
         wins[0].webContents.executeJavaScript("window.onload()")
         wins[0].on("resize",()=>{wins[0].webContents.executeJavaScript("sys.resize()")})})}

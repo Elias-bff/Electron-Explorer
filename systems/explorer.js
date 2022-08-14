@@ -18,8 +18,19 @@ explorer.dial("list",(d)=>{
     for(var i=1;i<d.length;i++)
         sys.ent(f,d[i])})
 explorer.dial("inspect",(d)=>{
-    info.children[0].children[1].innerText=d[1].split("/").at(-1)
-    info.children[0].children[2].innerText=d[0]["Width"]+"x"+d[0]["Height"]
-    info.children[0].children[3].innerText=(d[2].size/1048576).toFixed(2)+" MB"
-    graphical.children[0].src=d[1]
+    var win=document.documentElement.getBoundingClientRect()
+    info.children[0].children[1].innerText="Title:        "+d[2].split("/").at(-1)
+    info.children[0].children[2].innerText="Dimensions:   "+d[0]["Width"]+"x"+d[0]["Height"]
+    info.children[0].children[3].innerText="Size:         "+(d[1].size/1048576).toFixed(2)+" MB"
+    info.children[1].children[1].innerText="# Colors:     "+d[0]["# colors"]
+    info.children[1].children[2].innerText="Color Format: "+d[0]["Color model"]
+    info.children[1].children[3].innerText="Compression:  "+d[0]["Compression"]
+    info.children[1].children[4].innerText="Format:       "+d[0]["Format"]
+    info.children[1].children[5].innerText="Depth:        "+d[0]["Depth"]
+    info.children[1].children[6].innerText="Orientation:  "+d[0]["Orientation"]
+    graphical.children[0].src=d[2]
+    if(d[0]["Width"]<win.width)graphical.children[0].style.width=d[0]["Width"]+"px"
+    else graphical.children[0].style.width=""
+    if(d[0]["Height"]<win.height)graphical.children[0].style.height=d[0]["Height"]+"px"
+    else graphical.children[0].style.height=""
     console.log(d)})
