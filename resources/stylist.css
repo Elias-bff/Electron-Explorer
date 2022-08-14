@@ -17,7 +17,7 @@ img{max-width:-webkit-fill-available;max-height:-webkit-fill-available;margin:5p
 .docker .panel p{margin-left:15px;white-space:pre}
 .panel .title{height:11px;position:absolute;top:-11px;overflow:initial}
 .panel .title p{position:relative;top:-15px;margin-left:5px!important;display:block!important;white-space:nowrap!important}
-.closed p{display:none}
+.closed p{display:none} .closed svg{transform:rotate(180deg)}
 
 #access{height:-webkit-fill-available;width:100%;background:#191919;position:absolute;overflow-y:auto}
 #access .case{display:flex;flex-direction:column;width:100vw} 
