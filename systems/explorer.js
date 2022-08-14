@@ -3,7 +3,9 @@ window.onload=function(){
     explorer.api("init")
     sys.resize()
     document.addEventListener("contextmenu",(e)=>{
-        },false)}
+        },false)
+    visualViewport.onresize=()=>{
+        sys.resize()}}
 var sys={
     resize:function(){var a=document.body.children[2];a.style.width=a.width=document.documentElement.getBoundingClientRect().width-document.body.children[1].getBoundingClientRect().width-5+'px'},
     menu:function(d,p){
