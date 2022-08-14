@@ -39,11 +39,13 @@ async function main(){
                 wins[0].webContents.send("list",init)})})
         ipcMain.on("view",(events,args)=>{
             fs.readdir(args,function(e,r){
-                var f=[{"folder":args}]
-                for(var i=0;i<r.length;i++)
-                    f.push({"id":r[i],"parent":args,"type":r[i].includes(".")?"file":"folder"})
-                console.log(f)
-                wins[0].webContents.send("list",f)})})
+                if(e||!r.length)wins[0].webContents.executeJavaScript("sys.ent(document.getElementById(\""+args.slice(0,-1)+"\"),'')")
+                    else{
+                    var f=[{"folder":args}]
+                    for(var i=0;i<r.length;i++)
+                        f.push({"id":r[i],"parent":args,"type":r[i].includes(".")?"file":"folder"})
+                    console.log(f)
+                    wins[0].webContents.send("list",f)}})})
         ipcMain.on("open",(events,args)=>{
             shell.openPath(args)})
         ipcMain.on("inspect",(events,args)=>{
