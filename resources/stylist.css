@@ -9,8 +9,8 @@ img{max-width:100%;max-height:100%;margin:5px;height:inherit;min-width:fit-conte
 .empty{height:10px;}
 
 #graph{height:-webkit-fill-available;position:absolute;right:0;overflow:initial;display:-webkit-box}
-.docker{margin:5px;border:1px dotted #ffffff40;height:-webkit-fill-available;width:100px;display:flex;flex-wrap:wrap;align-content:flex-start}
-.docker .panel{border-left:1px solid white;width:inherit;position:absolute;left:0;margin-top:11px;overflow:initial;display:flex;flex-direction:column}
+.docker{margin:5px;border:1px dotted #ffffff40;height:-webkit-fill-available;width:100px;display:flex;flex-wrap:wrap;align-content:flex-start;overflow:initial}
+.docker .panel{border-left:1px solid white;width:inherit;position:relative;left:-6px;margin-top:11px;overflow:initial;display:flex;flex-direction:column}
 .docker .panel p{margin-left:15px}
 .panel .title{height:11px;position:absolute;top:-11px;overflow:initial}
 .panel .title p{position:relative;top:-15px;margin-left:5px!important}
