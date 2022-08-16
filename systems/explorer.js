@@ -31,8 +31,4 @@ explorer.dial("inspect",(d)=>{
     info.children[1].children[5].innerText="Depth:        "+d[0]["Depth"]
     info.children[1].children[6].innerText="Orientation:  "+d[0]["Orientation"]
     graphical.children[0].src=d[2]
-    if(d[0]["Width"]<win.width)graphical.children[0].style.width=d[0]["Width"]+"px"
-    else graphical.children[0].style.width=""
-    if(d[0]["Height"]<win.height)graphical.children[0].style.height=d[0]["Height"]+"px"
-    else graphical.children[0].style.height=""
     console.log(d)})
