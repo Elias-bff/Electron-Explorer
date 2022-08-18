@@ -9,11 +9,11 @@ img{min-width:fit-content;min-height:fit-content;margin:5px;max-height:-webkit-f
 .empty{height:10px;}
 
 #info{transition:width;transition-duration:1s;transition-delay:0.25s}
-#info:hover{width:200px;}
+#info:hover{width:40vw}
 
-#graph{height:-webkit-fill-available;position:absolute;right:0;overflow:initial;display:-webkit-box}
-.docker{margin:5px;border:1px dotted #ffffff40;height:-webkit-fill-available;width:60px;display:flex;flex-wrap:wrap;align-content:flex-start;overflow:initial}
-.docker .panel{border-left:1px solid white;width:inherit;position:relative;left:-6px;margin-top:11px;overflow:initial;flex-direction:column}
+#graph{height:-webkit-fill-available;position:absolute;right:0;overflow:initial;display:-webkit-box;display:flex}
+.docker{margin:5px;border:1px dotted #ffffff40;height:-webkit-fill-available;width:25%;flex-direction:column;display:flex;flex-wrap:wrap;align-content:flex-start;overflow:initial}
+.docker .panel{border-left:1px solid white;width:inherit;position:relative;left:-6px;margin-top:11px;overflow:initial;flex-direction:column;width:-webkit-fill-available}
 .docker .panel p{margin-left:15px;white-space:pre}
 .panel .title{height:11px;position:absolute;top:-11px;overflow:initial}
 .panel .title p{position:relative;top:-15px;margin-left:5px!important;display:block!important;white-space:nowrap!important}

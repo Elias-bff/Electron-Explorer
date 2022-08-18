@@ -7,7 +7,9 @@ window.onload=function(){
     visualViewport.onresize=()=>{
         sys.resize()}}
 var sys={
-    resize:function(){var a=document.body.children[2];a.style.width=a.width=document.documentElement.getBoundingClientRect().width-document.body.children[1].getBoundingClientRect().width-5+'px'},
+    resize:function(){
+        var a=document.body.children[2]
+        a.style.width=a.width=document.documentElement.getBoundingClientRect().width-document.body.children[1].getBoundingClientRect().width-5+'px'},
     menu:function(d,p){
         },
     ent:function(e,d){
@@ -20,7 +22,6 @@ explorer.dial("list",(d)=>{
     for(var i=1;i<d.length;i++)
         sys.ent(f,d[i])})
 explorer.dial("inspect",(d)=>{
-    var win=document.documentElement.getBoundingClientRect()
     info.children[0].children[1].innerText="Title:        "+d[2].split("/").at(-1)
     info.children[0].children[2].innerText="Dimensions:   "+d[0]["Width"]+"x"+d[0]["Height"]
     info.children[0].children[3].innerText="Size:         "+(d[1].size/1048576).toFixed(2)+" MB"
