@@ -8,10 +8,10 @@ body{background:#202020;font-size:10px;color:white;font-family:consolas;height:1
 .empty{height:10px;}
 
 #info{transition:width;transition-duration:1s;transition-delay:0.25s}
-#info:hover{width:40vw}
+#info:hover{width:96%}
 
-#graph{height:-webkit-fill-available;position:absolute;right:0;overflow:initial;display:-webkit-box;display:flex}
-.docker{margin:5px;border:1px dotted #ffffff40;height:-webkit-fill-available;width:10px;flex-direction:column;display:flex;flex-wrap:wrap;align-content:flex-start;overflow:initial}
+#graph{height:-webkit-fill-available;position:absolute;overflow:initial;display:-webkit-box;width:-webkit-fill-available;margin-right:23px}
+.docker{margin:5px;border:1px dotted #ffffff40;height:-webkit-fill-available;width:10px;flex-direction:column;display:flex;flex-wrap:nowrap;align-content:flex-start;overflow:initial}
 .docker .panel{border-left:1px solid white;width:inherit;position:relative;left:-6px;margin-top:11px;overflow:initial;flex-direction:column;width:-webkit-fill-available}
 .docker .panel p{margin-left:15px;white-space:pre}
 .panel .title{height:11px;position:absolute;top:-11px;overflow:initial}

@@ -50,12 +50,8 @@ async function main(){
             shell.openPath(args)})
         ipcMain.on("inspect",(events,args)=>{
             prc.exec("ncn.exe -info \""+args+"\"",(e,s)=>{
-                var r={}
-                s.split("\n").slice(5,-1).forEach(e=>{
-                    var i=e.replace(/\s+/g, " ").split(" : ")
-                    r[i[0].replace(" ","")]=i[1]})
                 fs.stat(args,(e,d)=>{
-                    wins[0].webContents.send("inspect",[r,d,args])})})})
+                    wins[0].webContents.send("inspect",[s.split("\n\n").findLast(e=>e),d,args])})})})
         wins[0].show()
         wins[0].webContents.executeJavaScript("window.onload()")
         wins[0].on("resize",()=>{wins[0].webContents.executeJavaScript("sys.resize()")})})}

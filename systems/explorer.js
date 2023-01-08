@@ -1,15 +1,17 @@
-var ram={}
 window.onload=function(){
     explorer.api("init")
     sys.resize()
-    document.addEventListener("contextmenu",(e)=>{
-        },false)
+    window.addEventListener('keydown',function(e){
+        console.log(e)
+        switch(e.which){
+            case !e.shiftKey && 27:
+                graphical.children[0].src=""
+                break}},false)
     visualViewport.onresize=()=>{
         sys.resize()}}
 var sys={
     resize:function(){
-        var a=document.body.children[2]
-        a.style.width=a.width=document.documentElement.getBoundingClientRect().width-document.body.children[1].getBoundingClientRect().width-5+'px'},
+        graph.style.marginLeft=access.parentElement.getBoundingClientRect().width+5+"px"},
     menu:function(d,p){
         },
     ent:function(e,d){
@@ -25,11 +27,5 @@ explorer.dial("inspect",(d)=>{
     info.children[0].children[1].innerText="Title:        "+d[2].split("/").at(-1)
     info.children[0].children[2].innerText="Dimensions:   "+d[0]["Width"]+"x"+d[0]["Height"]
     info.children[0].children[3].innerText="Size:         "+(d[1].size/1048576).toFixed(2)+" MB"
-    info.children[1].children[1].innerText="# Colors:     "+d[0]["# colors"]
-    info.children[1].children[2].innerText="Color Format: "+d[0]["Color model"]
-    info.children[1].children[3].innerText="Compression:  "+d[0]["Compression"]
-    info.children[1].children[4].innerText="Format:       "+d[0]["Format"]
-    info.children[1].children[5].innerText="Depth:        "+d[0]["Depth"]
-    info.children[1].children[6].innerText="Orientation:  "+d[0]["Orientation"]
-    graphical.children[0].src=d[2]
-    console.log(d)})
+    info.children[1].children[1].innerText=d[0]
+    graphical.children[0].src=d[2]})
