@@ -17,7 +17,7 @@ body{background:#202020;font-size:10px;color:white;font-family:consolas;height:1
 .panel .title{height:11px;position:absolute;top:-11px;overflow:initial}
 .panel .title p{position:relative;top:-15px;margin-left:5px!important;display:block!important;white-space:nowrap!important}
 .closed p{display:none} .closed svg{transform:rotate(180deg)}
-#graphical *{min-width:fit-content;min-height:fit-content;margin:5px;max-height:-webkit-fill-available}
+#graphical *{min-width:fit-content;min-height:fit-content;margin:5px;max-height:-webkit-fill-available;max-width:fit-content;align-self:center}
 
 #access{height:-webkit-fill-available;width:100%;background:#191919;position:absolute;overflow-y:auto}
 #access .case{display:flex;flex-direction:column;width:100vw} 

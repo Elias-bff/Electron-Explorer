@@ -8,7 +8,8 @@ window.onload=function(){
                 graphical.children[0].src=""
                 break}},false)
     visualViewport.onresize=()=>{
-        sys.resize()}}
+        sys.resize()}
+    setInterval(function(){sys.resize()},1)}
 var sys={
     resize:function(){
         graph.style.marginLeft=access.parentElement.getBoundingClientRect().width+5+"px"},
