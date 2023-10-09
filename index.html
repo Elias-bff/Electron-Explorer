@@ -10,10 +10,12 @@
     <body>
         <div id="titlebar">
             <p style="left:0;position:absolute;margin:2.5px">Electron Explorer</p>
+            
             <div onclick="explorer.api('minimize')"><svg aria-hidden="false" width="12" height="12" viewBox="0 0 12 12"><rect fill="currentColor" width="10" height="0.8" x="1" y="6"></rect></svg></div>
             <div onclick="explorer.api('maximize')"><svg aria-hidden="false" width="12" height="12" viewBox="0 0 12 12"><rect width="9" height="9" x="1.5" y="1.5" fill="none" stroke="currentColor"></rect></svg></div>
             <div onclick="explorer.api('close')"><svg aria-hidden="false" width="12" height="12" viewBox="0 0 12 12"><polygon fill="currentColor" fill-rule="evenodd" points="11 1.576 6.583 6 11 10.424 10.424 11 6 6.583 1.576 11 1 10.424 5.417 6 1 1.576 1.576 1 6 5.417 10.424 1"></polygon></svg></div>
         </div>
+        
         <div class="resize">
             <div id="access">
                 <div id="pc" class="case">
@@ -21,29 +23,43 @@
                 </div>
             </div>
         </div>
+        
         <div id="graph">
             <div id="info" class="docker">
                 <div class="panel">
                     <div class="title">
                         <svg onclick="this.parentElement.parentElement.classList.toggle('closed')" width="11" height="11" fill="currentColor" viewBox="0 0 384 512" style="position:relative;left:-6px;top:-1px"><path d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"></path></svg>
+                        
                         <p>SAMPLE</p>
                     </div>
+
                     <p></p>
                     <p></p>
                     <p></p>
                 </div>
+
                 <div class="panel closed">
                     <div class="title">
                         <svg onclick="this.parentElement.parentElement.classList.toggle('closed')" width="11" height="11" fill="currentColor" viewBox="0 0 384 512" style="position:relative;left:-6px;top:-1px"><path d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"></path></svg>
+                        
                         <p>DETAILS</p>
                     </div>
-                    <p></p>
+
+                        <p onclick="navigator.clipboard.writeText(this.innerText.split(': ')[1])"></p>
+                        <p onclick="navigator.clipboard.writeText(this.innerText.split(': ')[1])"></p>
+                        <p onclick="navigator.clipboard.writeText(this.innerText.split(': ')[1])"></p>
+                        <p onclick="navigator.clipboard.writeText(this.innerText.split(': ')[1])"></p>
+                        <p onclick="navigator.clipboard.writeText(this.innerText.split(': ')[1])"></p>
+                        <p onclick="navigator.clipboard.writeText(this.innerText.split(': ')[1])"></p>
+                        <p onclick="navigator.clipboard.writeText(this.innerText.split(': ')[1])"></p>
                 </div>
             </div>
+
             <div id="graphical" class="docker" style="width:-webkit-fill-available;justify-content:center;overflow:hidden;align-content:space-around">
                 <img></img>
             </div>
         </div>
+
         <script defer src="systems/explorer.js"></script>
     </body>
 </html>

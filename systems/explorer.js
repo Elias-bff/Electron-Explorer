@@ -1,15 +1,25 @@
-window.onload=function(){
+window.init=function(){
     explorer.api("init")
     sys.resize()
+
     window.addEventListener('keydown',function(e){
-        console.log(e)
-        switch(e.which){
+        switch(e){
             case !e.shiftKey && 27:
                 graphical.children[0].src=""
-                break}},false)
+
+                break
+        }
+    },false)
+
     visualViewport.onresize=()=>{
-        sys.resize()}
-    setInterval(function(){sys.resize()},1)}
+        sys.resize()
+    }
+
+    setInterval(function(){
+        sys.resize()
+    },1)
+}
+
 var sys={
     resize:function(){
         graph.style.marginLeft=access.parentElement.getBoundingClientRect().width+5+"px"},
@@ -18,15 +28,33 @@ var sys={
     ent:function(e,d){
         try{ //on e.insert, for p, cl[0] opens the file in desired text editor as well as opens folders
             cl=d['type']=="file"?["explorer.api('open','"+(d["parent"]?d["parent"]+"/":"")+d["id"].replace("\\","/")+"')",""]:["if(this.parentElement.children.length!=1){this.parentElement.replaceChildren(this)}else{explorer.api('view',this.parentElement.id+'/')}","<svg width='9' height='9' fill='currentColor' viewBox='0 0 16 16'> <path d='M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z'/></svg>"]
+            
             e.insertAdjacentHTML("beforeEnd","<div id=\""+(d["parent"]?d["parent"]:"")+d["id"].replace("\\","/")+"\" class="+d["type"]+"><p onclick=\"\" ondblclick=\""+(d["type"]=="file"?"explorer.api('inspect',this.parentElement.id)":cl[0])+"\">"+cl[1]+d["id"].split("/").at(-1)+"</p></div>")
-            }catch{e.insertAdjacentHTML("beforeEnd","<div class='empty'></div>")}}}
+        }catch{
+            e.insertAdjacentHTML("beforeEnd","<div class='empty'></div>")
+        }
+    }
+}
+
 explorer.dial("list",(d)=>{
     var f=document.getElementById(d[0]["folder"].replace("\\","/").slice(0,-1))
-    for(var i=1;i<d.length;i++)
-        sys.ent(f,d[i])})
+    
+    for(var i=1;i<d.length;i++){
+        sys.ent(f,d[i])
+    }
+})
+
 explorer.dial("inspect",(d)=>{
     info.children[0].children[1].innerText="Title:        "+d[2].split("/").at(-1)
     info.children[0].children[2].innerText="Dimensions:   "+d[0]["Width"]+"x"+d[0]["Height"]
     info.children[0].children[3].innerText="Size:         "+(d[1].size/1048576).toFixed(2)+" MB"
-    info.children[1].children[1].innerText=d[0]
-    graphical.children[0].src=d[2]})
+    info.children[1].children[1].innerText="# Colors:     "+d[0]["# colors"]
+    info.children[1].children[2].innerText="Color Format: "+d[0]["Color model"]
+    info.children[1].children[3].innerText="Compression:  "+d[0]["Compression"]
+    info.children[1].children[4].innerText="Format:       "+d[0]["Format"]
+    info.children[1].children[5].innerText="Depth:        "+d[0]["Depth"]
+    info.children[1].children[6].innerText="Orientation:  "+d[0]["Orientation"]
+    graphical.children[0].src=d[2]
+    
+    console.log(d)
+})

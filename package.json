@@ -1,7 +1,7 @@
 {
   "main": "systems/main.js",
   "dependencies": {
-    "electron": "^20.0.1",
+    "electron": "^20.3.12",
     "fs": "^0.0.1-security"
   }
 }
