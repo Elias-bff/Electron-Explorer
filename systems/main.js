@@ -7,13 +7,14 @@ function popout(bounds,page,callback){
         width:bounds[0],
         height:bounds[1],
         frame:false,
-        show:false,
+        show:true,
         backgroundColor:"#383838",
         webPreferences:{
             nodeIntegration:false,
             contextIsolation:true,
             enableRemoteModule:false,
-            preload:(__dirname+"/preload.js")
+            preload:(__dirname+"/preload.js"),
+            sandbox:true
         }
     })
         
@@ -51,9 +52,6 @@ function popout(bounds,page,callback){
         app.relaunch()
     	app.exit(0)
     })
-
-    win.show()
-    win.webContents.executeJavaScript("window.init()")
 }
 
 async function main(){

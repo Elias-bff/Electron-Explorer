@@ -1,7 +1,6 @@
-window.init=function(){
+window.onload=function(){
     explorer.api("init")
-    sys.resize()
-
+    
     window.addEventListener('keydown',function(e){
         switch(e){
             case !e.shiftKey && 27:
@@ -10,10 +9,6 @@ window.init=function(){
                 break
         }
     },false)
-
-    visualViewport.onresize=()=>{
-        sys.resize()
-    }
 
     setInterval(function(){
         sys.resize()
